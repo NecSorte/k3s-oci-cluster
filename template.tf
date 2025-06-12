@@ -1,4 +1,4 @@
-resource "oci_core_instance_configuration" "k3s_server_template" {
+BLEDresource "oci_core_instance_configuration" "k3s_server_template" {
 
   compartment_id = var.compartment_ocid
   display_name   = "k3s server configuration"
@@ -96,7 +96,7 @@ resource "oci_core_instance_configuration" "k3s_worker_template" {
         }
 
         plugins_config {
-          desired_state = "DISABLED"
+          desired_state = "ENABLED" #changed from DISABLED
           name          = "Bastion"
         }
       }

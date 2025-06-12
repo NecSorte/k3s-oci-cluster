@@ -10,13 +10,13 @@ variable "os_image_id" {}
 variable "certmanager_email_address" {}
 variable "region" {}
 variable "k3s_server_pool_size" {
-  default = 1
-}
-variable "k3s_worker_pool_size" {
   default = 2
 }
+variable "k3s_worker_pool_size" {
+  default = 1
+}
 variable "k3s_extra_worker_node" {
-  default = true
+  default = false
 }
 variable "expose_kubeapi" {
   default = false

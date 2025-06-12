@@ -30,7 +30,7 @@ resource "oci_core_instance_configuration" "k3s_server_template" {
         }
 
         plugins_config {
-          desired_state = "DISABLED"
+          desired_state = "ENABLED" #changed from DISABLED
           name          = "Bastion"
         }
       }

@@ -17,7 +17,19 @@ Deploy a Kubernetes cluster for free, using K3s and Oracle [always free](https:/
 2. Add Bastion service to each VM.
 3. Create Bastion sessions
 4. Add vault
-5. Public subnet goes to individual services & rancher UI on 443. Might just use WARP? 
+5. Review Secureity lists.
+   PUBLIC Ingress/Egress
+     NLB to Private
+       443
+   Private Ingree/Egress
+     KubeAPI
+     Rancher
+     SSH
+     
+7. Add WG Server.
+8. Add Ansible config management inventory
+10. add Bucket for tfstate file. 
+
 
 # Table of Contents
 

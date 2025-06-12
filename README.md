@@ -13,10 +13,10 @@
 Deploy a Kubernetes cluster for free, using K3s and Oracle [always free](https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm) resources.
 
 # TO DO:
-1. Put all servers (worker and server) in private subnet. NO public IP
+1. Put all servers (worker and server) in private subnet. NO public IPs
 2. Add Bastion service to each VM.
-3. Create Bastion Service
-4. Add secrets manager
+3. Create Bastion sessions
+4. Add vault
 5. Public subnet goes to individual services & rancher UI on 443. Might just use WARP? 
 
 # Table of Contents

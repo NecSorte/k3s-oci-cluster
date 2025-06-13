@@ -41,3 +41,36 @@ resource "oci_core_default_security_list" "default_security_list" {
     "${var.unique_tag_key}" = "${var.unique_tag_value}"
   }
 }
+
+module "cloud_guard" {
+  source              = "oci-landing-zones/security/cloud-guard"   # registry.terraform.io
+  tenancy_ocid        = var.tenancy_ocid
+  configuration_mode  = "READ_ONLY"   # flip to DETECT/REMEDIATE when ready
+  reporting_region    = var.region
+}
+
+module "security_zones" {
+  source           = "oci-landing-zones/security/security-zones"
+  compartment_ocid = var.root_compartment_ocid
+  recipe           = "CIS_Level_1"
+}
+
+resource "oci_bastion_session" "ssh_sessions" {
+  for_each = toset(var.target_instance_ids) # List of OCIDs
+
+  bastion_id             = oci_bastion_bastion.bastion.id
+  session_ttl_in_seconds = 10800
+  display_name           = "ssh-session-${each.key}"
+  key_type               = "SSH"
+  target_resource_id     = each.value
+  target_resource_port   = 22
+  target_resource_operating_system_user_name = "opc"
+
+  metadata = {
+    "ssh_public_key" = file(var.ssh_public_key_path)
+  }
+
+  freeform_tags = {
+    environment = var.environment
+  }
+}

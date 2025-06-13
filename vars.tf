@@ -237,3 +237,28 @@ variable "expose_kubeapi" {
   type    = bool
   default = false
 }
+
+variable "bastion_bastion_type" {
+  type    = string
+  default = "STANDARD"
+}
+
+variable "bastion_client_cidr_block_allow_list" {
+  type    = list(string)
+  default = []
+}
+
+variable "session_key_details_public_key_content" {
+  type        = string
+  description = "OpenSSH public key used for the session"
+}
+
+variable "session_target_resource_details_session_type" {
+  type    = string
+  default = "MANAGED_SSH"
+}
+
+variable "session_target_resource_details_target_resource_id" {
+  type = string
+  # e.g. pass module.k3s_control.instance_id from root
+}

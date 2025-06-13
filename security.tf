@@ -42,19 +42,6 @@ resource "oci_core_default_security_list" "default_security_list" {
   }
 }
 
-module "cloud_guard" {
-  source              = "oci-landing-zones/security/cloud-guard"   # registry.terraform.io
-  tenancy_ocid        = var.tenancy_ocid
-  configuration_mode  = "READ_ONLY"   # flip to DETECT/REMEDIATE when ready
-  reporting_region    = var.region
-}
-
-module "security_zones" {
-  source           = "oci-landing-zones/security/security-zones"
-  compartment_ocid = var.root_compartment_ocid
-  recipe           = "CIS_Level_1"
-}
-
 resource "oci_bastion_session" "ssh_sessions" {
   for_each = toset(var.target_instance_ids) # List of OCIDs
 

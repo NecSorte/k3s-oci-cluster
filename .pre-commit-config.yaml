@@ -1,0 +1,19 @@
+# .pre-commit-config.yaml
+# 1. Download: pip install pre-commit
+# 2. Install: pre-commit install
+# 3. Run: pre-commit run --all-files
+# 4. pre-commit autoupdate
+
+repos:
+  # 1. Terraform security scanning
+  - repo: https://github.com/aquasecurity/tfsec          # official upstream
+    rev: v1.28.14                                        # latest tag (Jan 10 2025) :contentReference[oaicite:0]{index=0}
+    hooks:
+      - id: tfsec
+        name: tfsec (IaC static analysis)
+        # fail on HIGH and CRITICAL issues only
+        args: ["--minimum-severity", "HIGH"]
+        # optional project-wide config file
+        additional_dependencies: ["github.com/aquasecurity/tfsec/cmd/tfsec@v1.28.13"]
+        stages: [pre-commit, pre-push]        # run on both hooks
+        types: [terraform]            # only *.tf / *.hcl files

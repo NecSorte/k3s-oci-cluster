@@ -43,6 +43,8 @@ module "k3s_cluster" {
   expose_kubeapi            = var.expose_kubeapi
   ingress_controller        = "nginx"
   source                    = "../"
+  session_key_details_public_key_content           = var.private_key_path
+  session_target_resource_details_target_resource_id = oci_core_instance.k3s_control_plane.id
 }
 
 output "k3s_servers_ips" {

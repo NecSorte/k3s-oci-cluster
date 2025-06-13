@@ -4,6 +4,20 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
+.terraform/
+*.tfstate*
+crash.log
+*.tfvars
+override.tf
+override.tf.json
+
+ansible/inventory*.ini
+*.retry
+ssh-config
+
+# Keys
+*.pem
+*.pub
 
 # Crash log files
 crash.log
